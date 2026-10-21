@@ -1143,6 +1143,10 @@
       el.addEventListener('click', (e) => { e.preventDefault(); goto(el.dataset.goto); });
     });
 
+    document.querySelectorAll('.dropdown-menu [data-goto]').forEach(el => {
+      el.addEventListener('click', (e) => { e.stopPropagation(); dd.classList.remove('open'); ddToggle.setAttribute('aria-expanded', 'false'); document.querySelector('[data-chevron]').style.transform = ''; });
+    });
+
     /* ---------- Dropdown (mobile click) ---------- */
     const dd = document.querySelector('.nav-item');
     const ddToggle = document.querySelector('[data-dropdown-toggle]');
