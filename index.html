@@ -1140,11 +1140,12 @@
     };
 
     document.querySelectorAll('[data-goto]').forEach(el => {
+      if (el.closest('.dropdown-menu')) return;
       el.addEventListener('click', (e) => { e.preventDefault(); goto(el.dataset.goto); });
     });
 
     document.querySelectorAll('.dropdown-menu [data-goto]').forEach(el => {
-      el.addEventListener('click', (e) => { e.stopPropagation(); dd.classList.remove('open'); ddToggle.setAttribute('aria-expanded', 'false'); document.querySelector('[data-chevron]').style.transform = ''; });
+      el.addEventListener('click', (e) => { e.preventDefault(); dd.classList.remove('open'); ddToggle.setAttribute('aria-expanded', 'false'); document.querySelector('[data-chevron]').style.transform = ''; goto(el.dataset.goto); });
     });
 
     /* ---------- Dropdown (mobile click) ---------- */
